@@ -130,15 +130,28 @@ const quizQuestions = [
 	},
 ];
 
+function quizStart() {
+	const currentQ = quizQuestions[0];
+	// display question place
+	var quest = document.getElementById('question-place');
+	quest.innerText = currentQ.id;
+	console.log('test');
+}
+
 //counter for question
-var i = 0;
+let i = 1;
 
 function getNext() {
+	//if i == 9 call function to show quiz results/ end quiz
+
 	//retrieve question
 	const currentQ = quizQuestions[i];
 
+	let quest = document.getElementById('question-place');
+	quest.innerText = currentQ.id;
+
 	//set question text
-	var quest = document.getElementById('display-question');
+	quest = document.getElementById('display-question');
 	quest.innerText = currentQ.question;
 
 	//set choices text
@@ -150,8 +163,3 @@ function getNext() {
 		currentQ.choices.d;
 	i++;
 }
-
-function next() {
-	return i++;
-}
-console.log(i);

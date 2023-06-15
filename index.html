@@ -9,12 +9,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="">
     </head>
-    <body>
+    <body onload="quizStart()">
         
         <p>Spanish Quiz</p>
 
         <div class = "card">
             <div id = "question-container">
+                
+                <p> Question <span id = "question-place"></span>/10</p>
                 <h1 id="display-question"></h1>
             </div>
             <div id = "options-container">
