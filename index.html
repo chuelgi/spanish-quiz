@@ -20,37 +20,18 @@
                 <h1 id="display-question"></h1>
             </div>
             <div id = "options-container">
-
+                <div id="options-container">
+                    <button class="answer-button" onclick="checkAnswer('a')">Option A</button>
+                    <button class="answer-button" onclick="checkAnswer('b')">Option B</button>
+                    <button class="answer-button" onclick="checkAnswer('c')">Option C</button>
+                    <button class="answer-button" onclick="checkAnswer('d')">Option D</button>
+                </div>
+                
             </div>
 
-            <span>
-                <input type="radio" id="option-one" name="option" class="radio" value="optionA" />
-                <label for="option-one" class="option" id="option-one-label"></label>
-            </span>
-            <br>
-
-            <span>
-                <input type="radio" id="option-two" name="option" class="radio" value="optionB" />
-                <label for="option-two" class="option" id="option-two-label"></label>
-            </span>
-            <br>
-            <span>
-                <input type="radio" id="option-three" name="option" class="radio" value="optionC" />
-                <label for="option-three" class="option" id="option-three-label"></label>
-            </span>
-
-            <br>
-            <span>
-                <input type="radio" id="option-four" name="option" class="radio" value="optionD" />
-                <label for="option-four" class="option" id="option-four-label"></label>
-            </span>
-            
         </div>
         
-
-        <button id = "but"> click me</button>
-
-        <button id = "next-button" onclick="getNext()"> Next</button>
+        <button id = "next-button" onclick="getNext()" > Next</button>
 
         <script src="quizQuestions.js"></script>
     </body>
