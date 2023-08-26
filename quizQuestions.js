@@ -134,25 +134,28 @@ let currentQuestionIndex = 0;
 
 function quizStart() {
 	//displays first question
-	console.log("quizStart() function is running.")
+	console.log("quizStart() function is running.");
 	
 	showQuestion(currentQuestionIndex);
-    console.log("quizStart() function ened.")
+    console.log("quizStart() function ened.");
 }
 
 function showQuestion(questionIndex){
-	console.log("showQuestion function is running.")
+	console.log("showQuestion function is running.");
 	const currentQ = quizQuestions[questionIndex];
+	//set place
+	const questionPlace = document.getElementById("question-place");
+	questionPlace.innerText = currentQ.id;
 
-	//set first question text
+	//set question text
 	var quest = document.getElementById('display-question');
     quest.innerText = currentQ.question;
 
-	const optionsContainer = document.getElementById("choices-container");
+	const choicesContainer = document.getElementById("choices-container");
+	//clear choices
+	choicesContainer.innerHTML = "";
 
-	optionsContainer.innerHTML = "";
-
-	//options
+	//generate choices 
     Object.values(currentQ.choices).forEach((choiceText, choiceIndex) => {
         const choiceButton = document.createElement("button");
         choiceButton.textContent = choiceText;
@@ -160,14 +163,34 @@ function showQuestion(questionIndex){
         choicesContainer.appendChild(choiceButton);
     });
 
-	const nextButton = document.getElementById("next-button");
-    nextButton.textContent = "Next";
 
-	console.log("showQuestion function ended.")
+	console.log("showQuestion function ended.");
+
+	//
 
 }
 
-function selectOption(optionIndex){
+function selectChoice(choiceIndex){
+	console.log("selectchoice function is running.")
+	selectedChoiceIndex = choiceIndex;
+
+    // Highlight the selected choice visually (you can apply CSS styles here)
+    const choiceButtons = document.querySelectorAll(".choice-button");
+    choiceButtons.forEach((button, index) => {
+        if (index === choiceIndex) {
+            button.classList.add("selected");
+        } else {
+            button.classList.remove("selected");
+        }
+    });
+
+
+	const nextButton = document.getElementById("next-button");
+    nextButton.style.display = "block";
+
+	checkAnswer(choiceIndex);
+	
+
 
 }
 
@@ -175,12 +198,41 @@ function selectOption(optionIndex){
 
 //displays next question
 function getNext() {
-
+	const nextButton = document.getElementById("next-button");
+    nextButton.style.display = "none";
+if(currentQuestionIndex === 9){
+	console.log("quiz ended");
+	console.log(currentQuestionIndex)
+	return;
+}else{
+	currentQuestionIndex++;
+	showQuestion(currentQuestionIndex);
+}
 	
 }
 
 function checkAnswer(selectedAnswer) {
+	console.log("check function is running.");
+	const correctAnswer = quizQuestions[currentQuestionIndex].answer;
+	if(correctAnswer === 'a' && selectedAnswer === 0){
+		console.log("correct");
+		
+	} else if(correctAnswer === 'b' && selectedAnswer === 1){
+		console.log("correct");
+	} else if(correctAnswer === 'c' && selectedAnswer === 2){
+		console.log("correct");
+	} else if(correctAnswer === 'd' && selectedAnswer === 3){
+		console.log("correct");
+	}
+	else{
+		console.log("wrong");
+	}
+	console.log(correctAnswer);
+	console.log(selectedAnswer);
 
+
+	console.log(" check ended.");
+	return;
 }
 
 
