@@ -129,74 +129,110 @@ const quizQuestions = [
 		answer: 'b',
 	},
 ];
+let currentQuestionIndex = 0;
+
 
 function quizStart() {
-    console.log("quizStart() function is running.")
-	const currentQ = quizQuestions[0];
-    // set the question text
-    var quest = document.getElementById('display-question');
-    quest.innerText = currentQ.question;
-
-	// update question place
-	var quest = document.getElementById('question-place');
-	quest.innerText = currentQ.id;
-
-	    // Set the options text for the first question
-		document.getElementById('option-one-label').innerText = currentQ.choices.a;
-		document.getElementById('option-two-label').innerText = currentQ.choices.b;
-		document.getElementById('option-three-label').innerText = currentQ.choices.c;
-		document.getElementById('option-four-label').innerText = currentQ.choices.d;
+	//displays first question
+	console.log("quizStart() function is running.");
+	
+	showQuestion(currentQuestionIndex);
+    console.log("quizStart() function ened.");
 }
 
-//counter for question
-let i = 1;
+function showQuestion(questionIndex){
+	console.log("showQuestion function is running.");
+	const currentQ = quizQuestions[questionIndex];
+	//set place
+	const questionPlace = document.getElementById("question-place");
+	questionPlace.innerText = currentQ.id;
+
+	//set question text
+	var quest = document.getElementById('display-question');
+    quest.innerText = currentQ.question;
+
+	const choicesContainer = document.getElementById("choices-container");
+	//clear choices
+	choicesContainer.innerHTML = "";
+
+	//generate choices 
+    Object.values(currentQ.choices).forEach((choiceText, choiceIndex) => {
+        const choiceButton = document.createElement("button");
+        choiceButton.textContent = choiceText;
+        choiceButton.onclick = () => selectChoice(choiceIndex);
+        choicesContainer.appendChild(choiceButton);
+    });
+
+
+	console.log("showQuestion function ended.");
+
+	//
+
+}
+
+function selectChoice(choiceIndex){
+	console.log("selectchoice function is running.")
+	selectedChoiceIndex = choiceIndex;
+
+    // Highlight the selected choice visually (you can apply CSS styles here)
+    const choiceButtons = document.querySelectorAll(".choice-button");
+    choiceButtons.forEach((button, index) => {
+        if (index === choiceIndex) {
+            button.classList.add("selected");
+        } else {
+            button.classList.remove("selected");
+        }
+    });
+
+
+	const nextButton = document.getElementById("next-button");
+    nextButton.style.display = "block";
+
+	checkAnswer(choiceIndex);
+	
+
+
+}
+
+
 
 //displays next question
 function getNext() {
-	console.log("getNext() function is running.")
-	//if i == 9 call function to show quiz results/ end quiz
-	if(i >= quizQuestions.length){
-		return;
-	}
-	//retrieve question
-	const currentQ = quizQuestions[i];
-
-	let quest = document.getElementById('question-place');
-	quest.innerText = currentQ.id;
-
-	//set question text
-	quest = document.getElementById('display-question');
-	quest.innerText = currentQ.question;
-
-	//set choices text
-	document.getElementById('option-one-label').innerText = currentQ.choices.a;
-	document.getElementById('option-two-label').innerText = currentQ.choices.b;
-	document.getElementById('option-three-label').innerText =
-		currentQ.choices.c;
-	document.getElementById('option-four-label').innerText =
-		currentQ.choices.d;
-	i++;
-
-	// Show the "Next" button
-	document.getElementById("next-button").style.display = "block";
-
-	// Call the checkAnswer function to compare the selected answer
-	checkAnswer('');
+	const nextButton = document.getElementById("next-button");
+    nextButton.style.display = "none";
+if(currentQuestionIndex === 9){
+	console.log("quiz ended");
+	console.log(currentQuestionIndex)
+	return;
+}else{
+	currentQuestionIndex++;
+	showQuestion(currentQuestionIndex);
+}
 	
 }
 
 function checkAnswer(selectedAnswer) {
-    const currentQ = quizQuestions[i - 1]; // Get the current question
+	console.log("check function is running.");
+	const correctAnswer = quizQuestions[currentQuestionIndex].answer;
+	if(correctAnswer === 'a' && selectedAnswer === 0){
+		console.log("correct");
+		
+	} else if(correctAnswer === 'b' && selectedAnswer === 1){
+		console.log("correct");
+	} else if(correctAnswer === 'c' && selectedAnswer === 2){
+		console.log("correct");
+	} else if(correctAnswer === 'd' && selectedAnswer === 3){
+		console.log("correct");
+	}
+	else{
+		console.log("wrong");
+	}
+	console.log(correctAnswer);
+	console.log(selectedAnswer);
 
-    // Compare the selected answer with the correct answer
-    if (selectedAnswer === currentQ.answer) {
-        console.log("Correct!");
-    } else {
-        console.log("Incorrect!");
-    }
 
-    // Show the "Next" button
-    document.getElementById("next-button").style.display = "block";
+	console.log(" check ended.");
+	return;
 }
 
 

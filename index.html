@@ -7,11 +7,11 @@
         <title>Quiz</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
+        <link rel="stylesheet" href="style.css">
     </head>
     <body onload="quizStart()">
         
-        <p>Spanish Quiz</p>
+        <h1 class="top-bar">Spanish Quiz</h1>
 
         <div class = "card">
             <div id = "question-container">
@@ -19,19 +19,14 @@
                 <p> Question <span id = "question-place"></span>/10</p>
                 <h1 id="display-question"></h1>
             </div>
-            <div id = "options-container">
-                <div id="options-container">
-                    <button class="answer-button" onclick="checkAnswer('a')">Option A</button>
-                    <button class="answer-button" onclick="checkAnswer('b')">Option B</button>
-                    <button class="answer-button" onclick="checkAnswer('c')">Option C</button>
-                    <button class="answer-button" onclick="checkAnswer('d')">Option D</button>
+                <div id="choices-container">
+                    
                 </div>
                 
-            </div>
+
+              <button id = "next-button" onclick="getNext()" style="display: none;" > Next</button>
 
         </div>
-        
-        <button id = "next-button" onclick="getNext()" > Next</button>
 
         <script src="quizQuestions.js"></script>
     </body>
