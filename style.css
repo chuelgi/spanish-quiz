@@ -1,0 +1,47 @@
+.card{
+    background-color: aqua;
+    margin-left: auto;
+    margin-right: auto;
+    width:650px;
+    height: 450;
+    font-family: 'Josefin Sans', sans-serif;
+
+}
+
+.choice-button{
+   
+    margin-left: 100px;
+    margin-right: 100px;
+    margin-bottom: 20px;
+    margin-top: 50px;
+    width: 120px;
+    height: 60px;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 20px;
+    border-radius: 40%;
+}
+
+#display-question{
+    text-align: center;
+
+}
+
+#question-place{
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#is-right{
+    text-align: center;
+}
+
+#next-button{
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 120px;
+    height: 60px;
+    border-radius: 40%;
+}
