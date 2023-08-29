@@ -1,10 +1,21 @@
+body{
+    background-color: #FF7B9C;
+    
+}
+.top-bar{
+    font-family: 'Josefin Sans', sans-serif;
+}
+
 .card{
-    background-color: aqua;
+    background-color: #FFC759;
     margin-left: auto;
     margin-right: auto;
+    margin-top: 150px;
     width:650px;
     height: 450;
     font-family: 'Josefin Sans', sans-serif;
+    border-radius: 5%;
+    color: white;
 
 }
 
@@ -19,17 +30,31 @@
     font-family: 'Josefin Sans', sans-serif;
     font-size: 20px;
     border-radius: 40%;
+    background-color: #FF7B9C;
+    border-color: #f3436f;
+    color: white;
+
+    
 }
 
 #display-question{
     text-align: center;
 
 }
-
-#question-place{
+#score-display{
+    
     text-align: center;
     margin-left: auto;
     margin-right: auto;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+#place-info{
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 30px;
 }
 
 #is-right{
@@ -44,4 +69,12 @@
     width: 120px;
     height: 60px;
     border-radius: 40%;
+    border-color: #f3436f;
+    background-color: #FF7B9C;
+    color: white;
+}
+
+.choice-button.selected {
+    background-color: #f3436f; 
+    color: #ffffff; 
 }

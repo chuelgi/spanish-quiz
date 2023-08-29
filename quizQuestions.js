@@ -119,6 +119,8 @@ const quizQuestions = [
 		answer: 'b',
 	},
 ];
+
+
 let currentQuestionIndex = 0;
 
 let curScore = 0;
@@ -133,6 +135,12 @@ const nextButton = document.getElementById("next-button");
 const score = document.getElementById("score");
 const scoreDisplay = document.getElementById("score-display");
 
+//question and message text
+var quest = document.getElementById('display-question');
+
+//choices container
+const choicesContainer = document.getElementById("choices-container");
+
 function quizStart() {
 	//displays first question	
 	showQuestion(currentQuestionIndex);
@@ -146,10 +154,8 @@ function showQuestion(questionIndex){
 	questionPlace.innerText = currentQ.id;
 
 	//set question text
-	var quest = document.getElementById('display-question');
     quest.innerText = currentQ.question;
 
-	const choicesContainer = document.getElementById("choices-container");
 	//clear choices
 	choicesContainer.innerHTML = "";
 
@@ -159,22 +165,18 @@ function showQuestion(questionIndex){
         choiceButton.textContent = choiceText;
         choiceButton.onclick = () => selectChoice(choiceIndex);
 
-		// Add the CSS class
+		// add class
 		choiceButton.classList.add("choice-button");
 		
         choicesContainer.appendChild(choiceButton);
     });
-
-
-
-	//
 
 }
 
 function selectChoice(choiceIndex){
 	selectedChoiceIndex = choiceIndex;
 
-    // Highlight the selected choice visually (you can apply CSS styles here)
+    // highlight selected
     const choiceButtons = document.querySelectorAll(".choice-button");
     choiceButtons.forEach((button, index) => {
         if (index === choiceIndex) {
@@ -185,7 +187,7 @@ function selectChoice(choiceIndex){
     });
 
 	if (currentQuestionIndex === quizQuestions.length - 1) {
-        // Hide the Next button for the last question
+        //hide next button
         nextButton.style.display = "none";
     } else {
         nextButton.style.display = "block";
@@ -202,25 +204,18 @@ function getNext() {
     nextButton.style.display = "none";
 	//hide response
 	respond.style.display = "none"
-	console.log("quiz ");
-if(currentQuestionIndex ===  9){
-	console.log("quiz ended");
-	const scoreElement = document.getElementById("score");
-	const scoreDisplay = document.getElementById("score-display");
-	scoreDisplay.style.display = "block";
-	scoreElement.innerText = curScore;
-	console.log("score is " + score);
-	return;
-}else{
+	
+	//goes to next question
 	currentQuestionIndex++;
 	showQuestion(currentQuestionIndex);
-}
+
 	
 }
 
 function checkAnswer(selectedAnswer) {
 	const correctAnswer = quizQuestions[currentQuestionIndex].answer;
 
+	//correct letter correlates to a number
 	if(correctAnswer === 'a' && selectedAnswer === 0){
 		curScore++;
 		respond.style.display = "block";
@@ -243,16 +238,20 @@ function checkAnswer(selectedAnswer) {
 		respond.style.display = "block";
 	}
 
-		if(currentQuestionIndex ===  9){
-			quizEnd();
-		}
+	//ends quiz
+	if(currentQuestionIndex ===  9){
+		quizEnd();
+	}
 }
 
 function quizEnd(){
-	
+	//display score
 	const scoreElement = document.getElementById("score");
 	const scoreDisplay = document.getElementById("score-display");
 	scoreDisplay.style.display = "block";
 	scoreElement.innerText = curScore;
+
+	quest.innerText = "Quiz End";
+	choicesContainer.innerHTML = "";
 	
 }
